@@ -3,32 +3,21 @@ package modelo;
 import java.util.*;
 
 public class Filial {
+
 	private String nome;
 	private String cidade;
 	private String telefone;
-	private ArrayList<Produto> estoque = new ArrayList<Produto>();
-	
+	private ArrayList<Medicamento> medicamento = new ArrayList<Medicamento>();
+	private ArrayList<Cosmetico> cosmetico = new ArrayList<Cosmetico>();
 	
 	public Filial(String nome, String cidade,String telefone) {
 		this.nome = nome;
 		this.cidade = cidade;
 		this.telefone = telefone;
-		this.estoque = new ArrayList<Produto>();
 	}
 
 	public Filial() {
-		
 	}
-
-	public void cadastraEstoque(Produto prod){
-		estoque.add(prod);
-	}
-	
-	public void removeEstoque(Produto prod){
-		estoque.remove(prod);
-	}
-	
-	
 	public String getNome() {
 		return nome;
 	}	
@@ -47,12 +36,20 @@ public class Filial {
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
-	
-	public ArrayList<Produto> getEstoque() {
-		return estoque;
+	public ArrayList<Medicamento> getMedicamento() {
+		return medicamento;
 	}
-	public void setEstoque(ArrayList<Produto> estoque) {
-		this.estoque = estoque;
+
+	public void setMedicamento(ArrayList<Medicamento> medicamento) {
+		this.medicamento = medicamento;
+	}
+
+	public ArrayList<Cosmetico> getCosmetico() {
+		return cosmetico;
+	}
+
+	public void setCosmetico(ArrayList<Cosmetico> cosmetico) {
+		this.cosmetico = cosmetico;
 	}
 	public String toString() {
 		return nome + " " + cidade +" "+ telefone;
