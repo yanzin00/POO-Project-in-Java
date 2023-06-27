@@ -2,32 +2,32 @@ package modelo;
 
 public class Medicamento extends Produto {
 	
-	private String tarjaDeControle;
+	private String tipo;
 	private String dosagem;
 	
 	public Medicamento() {
 		super();
 	}
-	public Medicamento(String nome, int quantidade, double preco, String validade, String codigoDeBarra, String dosagem, String tarjaDeControle) {
+	public Medicamento(String nome, int quantidade, double preco, String validade, String codigoDeBarra, String dosagem, String tipo) {
 		this.nome = nome;
 		this.quantidade = quantidade;
 		this.preco = preco;
 		this.validade = validade;
 		this.codigoDeBarra = codigoDeBarra;
 		this.dosagem = dosagem;
-		this.tarjaDeControle = tarjaDeControle;
+		this.tipo = tipo;
 	}
 	public String toString() {
 		return "nome d0 medicament0: " +nome+ ", quantidade: " +quantidade+ ", preco: R$" +preco+ ", validade: " +validade+ ", codigo de barra: " +codigoDeBarra+
-				", dosagem: " +dosagem+ ", tarjaDeControle:" +tarjaDeControle;
+				", dosagem: " +dosagem+ ", tipo de medicamento:" +tipo;
 				
 	}
 	
-	public String getTarjaDeControle() {
-		return tarjaDeControle;
+	public String getTipo() {
+		return tipo;
 	}
-	public void setTarjaDeControle(String tarjaDeControle) {
-		this.tarjaDeControle = tarjaDeControle;
+	public void setTipo(String tipo) {
+		this.tipo= tipo;
 	}
 	
 	public String getDosagem() {
