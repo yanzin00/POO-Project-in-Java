@@ -22,7 +22,7 @@ public class TelaMenu implements ActionListener, ListSelectionListener{
 	private ControleFilial cf = new ControleFilial();
 	private ControleDados dados = new ControleDados();
 	
-
+	
 	
 
 	
@@ -30,7 +30,7 @@ public class TelaMenu implements ActionListener, ListSelectionListener{
 	public TelaMenu(){
 		
 		
-		list = new JList<String>(cf.arrayNomes(dados.getDados().getEmpresa()));
+		list = new JList<String>(dados.arrayNomes(dados.getD().getFilial().getNome()));
 		
 
 		jlab.setFont(new Font("Arial", Font.BOLD, 20));
@@ -92,5 +92,7 @@ public class TelaMenu implements ActionListener, ListSelectionListener{
 	
 	public static void main(String[] a) { 
 		new TelaMenu();	
+	
 	}
+	
 }
