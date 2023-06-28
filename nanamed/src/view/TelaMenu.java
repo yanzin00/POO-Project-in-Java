@@ -17,10 +17,9 @@ public class TelaMenu implements ActionListener, ListSelectionListener{
 	
 	private JList<String> list;
 	private JScrollPane scroll;
+	private String[] listaF;
 
-
-	private ControleFilial cf = new ControleFilial();
-	private ControleDados dados = new ControleDados();
+	private static ControleDados dados = new ControleDados();
 	
 	
 	
@@ -29,8 +28,9 @@ public class TelaMenu implements ActionListener, ListSelectionListener{
 	
 	public TelaMenu(){
 		
-		
-		list = new JList<String>(dados.arrayNomes(dados.getD().getFilial().getNome()));
+		listaF = new ControleFilial(dados).getNomesFiliais();
+		list = new JList<String>(listaF);
+		System.out.println(listaF[0]);
 		
 
 		jlab.setFont(new Font("Arial", Font.BOLD, 20));
@@ -78,7 +78,6 @@ public class TelaMenu implements ActionListener, ListSelectionListener{
 		if(e.getValueIsAdjusting() && src == list) {
 			
 			new TelaEstoque().telaEstoque(list.getSelectedIndex(), dados);
-			jfrm.dispose();
 		}
 	}
 	public void actionPerformed(ActionEvent e) {
@@ -86,13 +85,10 @@ public class TelaMenu implements ActionListener, ListSelectionListener{
 		
 		if(src == cadastro)
 			new TelaCadastroFilial();
-		jfrm.dispose();
 	} 
-	
 	
 	public static void main(String[] a) { 
 		new TelaMenu();	
-	
 	}
 	
 }
