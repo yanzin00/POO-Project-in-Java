@@ -14,7 +14,7 @@ public class ControleDados {
 		d.fillWithSomeData();
 		filiais = d.getEmpresa().getFiliais();
 		}
-	public void cadastrarEditarFilial(String nome, String cidade, String telefone) {
+	public void cadastrarEditarFilial(String nome, String cidade, String telefone,int pos) {
 		
 		Filial filialTemp = new Filial(nome, cidade,telefone);
 		
@@ -28,21 +28,9 @@ public class ControleDados {
 			d.getEmpresa().getFiliais().get(pos).setCidade(cidade);
 			d.getEmpresa().getFiliais().get(pos).setTelefone(telefone);
 	    }
-	}
+	}	
 	
-	/*
-	public void cadastrarEditarFilial(String nome, String endereco, String tel, int pos) {
-		Filial filialTemporaria = new Filial(nome, endereco,tel);
-		if (pos == empresa.getFiliais().size()) {
-			empresa.setFiliais(filialTemporaria);
-		} else {
-			empresa.getFiliais().get(pos).setNome(nome);
-			empresa.getFiliais().get(pos).setCidade(endereco);
-			empresa.getFiliais().get(pos).setTelefone(tel);
-		}
-
-	}
-	*/
+	
 	public void setEscritorio(Empresa empresa) {
 		this.empresa = empresa;
 	}
