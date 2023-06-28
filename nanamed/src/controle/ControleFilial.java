@@ -13,58 +13,43 @@ public class ControleFilial  {
 	public ArrayList<Filial> filiais = new ArrayList<Filial>();
 	
 	
-	public ControleFilial(Filial filial) {
-		this.filial = filial;
-	}
-	 public ControleFilial(Dados d, int pos) {
-	    	filial = d.getEmpresa().getFiliais().get(pos);
-	    	filiais = d.getEmpresa().getFiliais();
-	    }
-	public ControleFilial(Dados d) {
-		filiais = d.getEmpresa().getFiliais();
-	}
-	public ControleFilial() {
-
-	}
 	
-	
-	public void ctrlCadastrarFilial(String nome, String cidade, String telefone) {
-		filial = new Filial();
-		filial.setNome(nome);
-		filial.setCidade(cidade);
-		filial.setTelefone(telefone);
+	public ControleFilial(ControleDados cd) {
+		filiais = cd.getD().getEmpresa().getFiliais();
 		
-		empresa.cadastrarFilial(filial);
+	}
+
+
+
+	public ControleFilial() {
+		// TODO Auto-generated constructor stub
+	}
+
+
+
+	public ArrayList<Filial> getFiliais() {
+		return filiais;
+	}
+
+
+
+	public void setFiliais(ArrayList<Filial> filiais) {
+		this.filiais = filiais;
 	}
 	
-	public Empresa getEmpresa() {
-		return empresa;
-	}
-	public Filial getFilial() {
-		return filial;
-	}
-	public void setFilial(Filial filial) {
-		this.filial = filial;
-	}
-	public void removerFilial() {
-		filial = null;
-		empresa.removerFilial(filial);
+	public int getQtF() {
+		return filiais.size();
 	}
 	
-	
-	public void editarFilial(String novoNome, String novaCidade, String novoTelefone) {
-		filial = new Filial(novoNome, novaCidade, novoTelefone);
-		filial.setCidade(novaCidade);
-		filial.setNome(novoNome);
-		filial.setTelefone(novoTelefone);
-	}
-	public String[] arrayNomes(Empresa empresa) {
-		String[] nomes = new String[empresa.getFiliais().size()];
-		int x = 0;
-		for (Filial i : empresa.getFiliais()) {
-			nomes[x] = i.getNome();
-			x++;
+	public String[] getNomesFiliais() {
+		String[] nomes = new String[filiais.size()];
+		
+		for (int i = 0; i < filiais.size(); i++) {
+			nomes[i] = filiais.get(i).getNome();
 		}
+		
 		return nomes;
 	}
 }
+
+
