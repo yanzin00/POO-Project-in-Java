@@ -53,7 +53,7 @@ public class ControleDados {
 		}
 		return nomes;
 	}
-	
+
 	public Dados getD() {
 		return d;
 	}
