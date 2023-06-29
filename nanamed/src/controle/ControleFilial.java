@@ -8,7 +8,6 @@ import modelo.*;
 
 public class ControleFilial  {
 	
-	private Filial filial;
 	Empresa empresa = new Empresa();
 	public ArrayList<Filial> filiais = new ArrayList<Filial>();
 	
@@ -18,14 +17,6 @@ public class ControleFilial  {
 		filiais = cd.getD().getEmpresa().getFiliais();
 		
 	}
-
-
-
-	public ControleFilial() {
-		// TODO Auto-generated constructor stub
-	}
-
-
 
 	public ArrayList<Filial> getFiliais() {
 		return filiais;
