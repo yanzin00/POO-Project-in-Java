@@ -24,12 +24,16 @@ public class TelaEstoque implements ActionListener, ListSelectionListener{
 	private JTextField jtfNome = new JTextField();
 	private JTextField jtfCidade = new JTextField();
 	private JTextField jtfTelefone = new JTextField();
+	private int posicao;
+	private String [] listaE;
 	
 	private static ControleDados dados;
 	
 	public void telaEstoque(int pos, ControleDados dados) {
 		
 		this.dados = dados;
+		this.posicao = pos;
+		
 		jlab.setFont(new Font("Arial", Font.BOLD, 20));
 		jlab.setBounds(10, 10, 150, 30);
 		nome.setBounds(250,70,150,30);
@@ -45,21 +49,25 @@ public class TelaEstoque implements ActionListener, ListSelectionListener{
 		
 		jfrm.setLayout(null);
 		jfrm.setSize(420, 300);
-		jfrm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
 		
-		estoque = new JList<>();
+		
+		listaE = new ControleEstoque(dados).getNomesMed();
+		estoque = new JList<String>(listaE);
 		estoque.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 		estoque.setVisibleRowCount(10);
 		
 		scroll = new JScrollPane(estoque); 
 		scroll.setBounds(10,50,230,200);
 		
-		
+		jtfNome.setText(dados.getD().getEmpresa().getFiliais().get(pos).getNome());
+		jtfCidade.setText(dados.getD().getEmpresa().getFiliais().get(pos).getCidade());
+		jtfTelefone.setText(dados.getD().getEmpresa().getFiliais().get(pos).getTelefone());
 		
 		
 		jtfNome.addActionListener(this);
 		jtfCidade.addActionListener(this); 
 		jtfTelefone.addActionListener(this); 
+		
 		editF.addActionListener(this); 
 		salvar.addActionListener(this);
 		
@@ -90,7 +98,19 @@ public class TelaEstoque implements ActionListener, ListSelectionListener{
 		Object src = e.getSource();
 		
 		
-		if(src == editF)
-			new TelaEditar();	
+		if(src == editF) {
+			new TelaEditar();
+			}
+		if(src == salvar) {
+
+			
+			String nomeF = jtfNome.getText();
+			String cidadeF = jtfCidade.getText();
+			String telefoneF = jtfTelefone.getText();
+			dados.cadastrarEditarFilial(nomeF, cidadeF, telefoneF,posicao);
+			JOptionPane.showMessageDialog(salvar, "Dados editados com sucesso!");
+			jfrm.dispose();
+		}
+			
 	}
 }
