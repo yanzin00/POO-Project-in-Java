@@ -8,19 +8,23 @@ import controle.*;
 public class TelaCadastroFilial implements ActionListener { 
 	
 	private JFrame jfrm = new JFrame("Cadastro");
-	private JTextField tel = new JTextField(); ;
-	private JTextField endereco= new JTextField(); ;
-	private JTextField nome = new JTextField(); ; 
+
+	private JTextField tel = new JTextField();
+	private JTextField endereco= new JTextField();
+	private JTextField nome = new JTextField();
+
 	private JButton salvar = new JButton("Salvar");
+
 	private JLabel jlabPrompt = new JLabel("Digite o nome da filial: "); 
 	private JLabel jlabPrompt1= new JLabel("Digite o endereco: ");
 	private JLabel jlabPrompt2 = new JLabel("Digite o telefone: "); 
 
 	private static ControleDados dados;
 	int pos;
-	
+
 	public TelaCadastroFilial(ControleDados dados) { 
 		this.dados = dados; 
+		
 		
 		jlabPrompt.setBounds(10, 35, 208, 50);
 		jlabPrompt.setFont(new Font("Arial", Font.BOLD, 15));
@@ -37,7 +41,7 @@ public class TelaCadastroFilial implements ActionListener {
 		salvar.setBounds(160, 210, 150, 40);
 		jfrm.setLayout(null); 
 		jfrm.setSize(500,300);
-		jfrm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+		
 	
 		jfrm.add(jlabPrompt); 
 		jfrm.add(nome);  
@@ -47,10 +51,12 @@ public class TelaCadastroFilial implements ActionListener {
 		jfrm.add(tel);
 		jfrm.add(salvar);
 
-		jfrm.setVisible(true); 
-
+		jfrm.setVisible(true);
 		salvar.addActionListener(this); 
-	} 
+
+
+
+		}
 
 	@Override
 	public void actionPerformed(ActionEvent e) { 
@@ -59,15 +65,13 @@ public class TelaCadastroFilial implements ActionListener {
 					|| tel.getText().equals("")) {
 				JOptionPane.showMessageDialog(salvar, "Todos os campos precisam ser preenchidos!");
 			} else {
-				//dados.cadastrarEditarFilial(nome.getText(), endereco.getText(),tel.getText(),
-						//pos);
 				
 				String nomeF = nome.getText();
 				String cidadeF = endereco.getText();
 				String telefoneF = tel.getText();
 				dados.cadastrarEditarFilial(nomeF, cidadeF, telefoneF, dados.getD().getEmpresa().getFiliais().size());
 			
-				System.out.println(dados.getFiliais());
+			
 				JOptionPane.showMessageDialog(salvar, "Dados cadastrados com sucesso!");
 				jfrm.dispose();
 			}
