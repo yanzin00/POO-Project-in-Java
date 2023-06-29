@@ -14,20 +14,10 @@ public class ControleEstoque {
 	private ArrayList<Cosmetico> cosmeticos = new ArrayList<Cosmetico>();
 	
 	
+	
 	public ControleEstoque(ControleDados d, int pos) {
 		medicamentos = d.getD().getEmpresa().getFiliais().get(pos).getMedicamento();
 		cosmeticos = d.getD().getEmpresa().getFiliais().get(pos).getCosmetico();
-	}
-
-	public ControleEstoque(ControleDados d) {
-		for (int i = 0; i < d.getD().getEmpresa().getFiliais().size(); i++) {
-			for (int j = 0; j < d.getD().getEmpresa().getFiliais().get(i).getMedicamento().size() ||
-					j < d.getD().getEmpresa().getFiliais().get(i).getCosmetico().size(); j++) 
-			{
-				medicamentos.add(d.getD().getEmpresa().getFiliais().get(i).getMedicamento().get(j));
-				cosmeticos.add(d.getD().getEmpresa().getFiliais().get(i).getCosmetico().get(j));
-			}
-		}
 	}
 	public ArrayList<Cosmetico> getCosmeticos() {
 		return cosmeticos;
@@ -50,34 +40,37 @@ public class ControleEstoque {
 		this.medicamentos = medicamentos;
 	}
 	
-	public String[] getNomesMed() {
-		String[] nomes = new String[medicamentos.size()+cosmeticos.size()];
+	public String[] getListaEstoque(ControleDados d, int pos) {
 
-		for (int i = 0; i < medicamentos.size() || i < cosmeticos.size(); i++) {
-			nomes[i] = medicamentos.get(i).getNome();
-			nomes[i] = cosmeticos.get(i).getNome();
+		ArrayList<Medicamento> medicamentos = d.getD().getEmpresa().getFiliais().get(pos).getMedicamento();
+		ArrayList<Cosmetico> cosmeticos = d.getD().getEmpresa().getFiliais().get(pos).getCosmetico();
+		int sizeMedCos = cosmeticos.size() + medicamentos.size();
+
+
+		System.out.println("############################");
+		System.out.println(medicamentos.size());
+		System.out.println(cosmeticos.size());
+		System.out.println("****************************");
+		System.out.println(sizeMedCos);
+
+		String[] meds = new String[medicamentos.size()];
+		String[] cosm = new String[cosmeticos.size()];
+		String[] estoque = new String[50];
+
+		for (int i = 0; i < medicamentos.size() -1; i++) {
+			meds[i] = medicamentos.get(i).toString();
+			estoque[i] = medicamentos.get(i).toString();
 		}
+		for (int i = 0; i < cosmeticos.size() - 1; i++) {
+			cosm[i] = cosmeticos.get(i).toString();
+			estoque[i+5] = cosmeticos.get(i).toString();
+		}
+
+		System.out.println("--------------------------");
+		System.out.println(meds.length);
+		System.out.println(cosm.length);
 		
-		return nomes;
+		return estoque;
 	}
 
-
-	
-	
-	/* public ControleEstoque(ControleDados dados) {
-		medicamentos = dados.getD().getEmpresa().getFiliais().get(pos).getMedicamento();
-		cosmeticos = dados.getD().getEmpresa().getFiliais().get(pos).getCosmetico();
-	}*/
-	
-	public String[] getListaEstoque() {
-		String[] listaMed = new String[medicamentos.size()];
-		String[] listaCos = new String[cosmeticos.size()];
-		String[] listaEst = new String[medicamentos.size()+cosmeticos.size()];
-		
-		for(int i = 0; i < medicamentos.size() || i < cosmeticos.size();i++){
-			listaMed[i] = new ControleFilial(dados).empresa.filiais.get(i).getMedicamento().toString();
-			listaCos[i] = new ControleFilial(dados).empresa.filiais.get(i).getCosmetico().toString();
-		}
-		return listaMed;
-	}
 }
