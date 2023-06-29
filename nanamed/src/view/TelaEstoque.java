@@ -9,9 +9,11 @@ import java.awt.event.*;
 
 public class TelaEstoque implements ActionListener, ListSelectionListener{
 
-	private JFrame jfrm  = new JFrame("Estoque");
-	private static JButton editF = new JButton("editar estoque");
-	private static JButton salvar = new JButton("salvar");
+	private JFrame jfrm  = new JFrame(	"Estoque");
+	private JButton addMed = new JButton("Adicionar Cosmetico");
+	private JButton addCos = new JButton("Adicionar Medicamento");
+	private JButton salvar = new JButton("salvar");
+	private JButton atualizar = new JButton("Atualizar");
 	
 	private JList<String> estoque;
 	private JScrollPane scroll;
@@ -27,7 +29,7 @@ public class TelaEstoque implements ActionListener, ListSelectionListener{
 	private int posicao;
 	private String [] listaE;
 	
-	private static ControleDados dados;
+	private ControleDados dados;
 	
 	public void telaEstoque(int pos, ControleDados dados) {
 		
@@ -44,15 +46,21 @@ public class TelaEstoque implements ActionListener, ListSelectionListener{
 		jtfCidade.setBounds(245,135,150,30);
 		jtfTelefone.setBounds(245,180,150,30);
 	
-		editF.setBounds(262,40,150,30);
-		salvar.setBounds(262,220,150,30);
+		addMed.setBounds(242,10,170,30);
+		addCos.setBounds(242,40,170,30);
+		salvar.setBounds(292,220,70,30);
+		atualizar.setBounds(252,220,70,30);
 		
 		jfrm.setLayout(null);
 		jfrm.setSize(420, 300);
 		
 		
-		listaE = new ControleEstoque(dados).getNomesMed();
+		listaE = new ControleEstoque(dados,pos).getListaEstoque(dados,pos);
 		estoque = new JList<String>(listaE);
+		
+		System.out.println(listaE);
+
+
 		estoque.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 		estoque.setVisibleRowCount(10);
 		
@@ -68,8 +76,10 @@ public class TelaEstoque implements ActionListener, ListSelectionListener{
 		jtfCidade.addActionListener(this); 
 		jtfTelefone.addActionListener(this); 
 		
-		editF.addActionListener(this); 
+		addMed.addActionListener(this); 
+		addCos.addActionListener(this);
 		salvar.addActionListener(this);
+		atualizar.addActionListener(this);
 		
 		jfrm.add(jlab);
 		jfrm.add(nome);
@@ -80,8 +90,10 @@ public class TelaEstoque implements ActionListener, ListSelectionListener{
 		jfrm.add(jtfCidade);
 		jfrm.add(jtfTelefone);
 		
-		jfrm.add(editF);
+		jfrm.add(addCos);
+		jfrm.add(addMed);
 		jfrm.add(salvar);
+		jfrm.add(atualizar);
 		jfrm.getContentPane().add(scroll);
 		
 			
@@ -98,9 +110,12 @@ public class TelaEstoque implements ActionListener, ListSelectionListener{
 		Object src = e.getSource();
 		
 		
-		if(src == editF) {
-			new TelaEditar();
+		if(src == addMed) {
+			new TelaEditar(dados, 2);
 			}
+		if(src == addCos){
+			new TelaEditar(dados, 1);
+		}
 		if(src == salvar) {
 
 			
@@ -108,9 +123,15 @@ public class TelaEstoque implements ActionListener, ListSelectionListener{
 			String cidadeF = jtfCidade.getText();
 			String telefoneF = jtfTelefone.getText();
 			dados.cadastrarEditarFilial(nomeF, cidadeF, telefoneF,posicao);
+			
 			JOptionPane.showMessageDialog(salvar, "Dados editados com sucesso!");
 			jfrm.dispose();
 		}
+		if(src == atualizar)
+		{
+			estoque.setListData(new ControleEstoque(dados,posicao).getListaEstoque(dados,posicao));
+			estoque.updateUI();
 			
+		}		
 	}
 }
