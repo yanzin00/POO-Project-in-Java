@@ -11,7 +11,7 @@ public class TelaCadastroFilial implements ActionListener {
 	private JTextField tel = new JTextField(); ;
 	private JTextField endereco= new JTextField(); ;
 	private JTextField nome = new JTextField(); ; 
-	private JButton salvar = new JButton("Salvar"); ; 
+	private JButton salvar = new JButton("Salvar");
 	private JLabel jlabPrompt = new JLabel("Digite o nome da filial: "); 
 	private JLabel jlabPrompt1= new JLabel("Digite o endereco: ");
 	private JLabel jlabPrompt2 = new JLabel("Digite o telefone: "); 
@@ -19,8 +19,9 @@ public class TelaCadastroFilial implements ActionListener {
 	private static ControleDados dados;
 	int pos;
 	
-	public TelaCadastroFilial() { 
-	
+	public TelaCadastroFilial(ControleDados dados) { 
+		this.dados = dados; 
+		
 		jlabPrompt.setBounds(10, 35, 208, 50);
 		jlabPrompt.setFont(new Font("Arial", Font.BOLD, 15));
 		nome.setBounds(200, 45, 280, 30);
@@ -58,16 +59,19 @@ public class TelaCadastroFilial implements ActionListener {
 					|| tel.getText().equals("")) {
 				JOptionPane.showMessageDialog(salvar, "Todos os campos precisam ser preenchidos!");
 			} else {
-				dados.cadastrarEditarFilial(nome.getText(), endereco.getText(),tel.getText(),
-						pos);
+				//dados.cadastrarEditarFilial(nome.getText(), endereco.getText(),tel.getText(),
+						//pos);
+				
+				String nomeF = nome.getText();
+				String cidadeF = endereco.getText();
+				String telefoneF = tel.getText();
+				dados.cadastrarEditarFilial(nomeF, cidadeF, telefoneF, dados.getD().getEmpresa().getFiliais().size());
+			
+				System.out.println(dados.getFiliais());
 				JOptionPane.showMessageDialog(salvar, "Dados cadastrados com sucesso!");
 				jfrm.dispose();
 			}
 
-		}
-
-		
-	
-
+		}	
 	}
 }
