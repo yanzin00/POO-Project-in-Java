@@ -16,6 +16,7 @@ public class TelaMenu implements ActionListener, ListSelectionListener{
 	
 	private static JButton cadastro = new JButton("Cadastrar Filial");
 	private static JButton atualizar = new JButton("Atualizar");
+
 	
 	private JList<String> list;
 	private JScrollPane scroll;
@@ -28,21 +29,17 @@ public class TelaMenu implements ActionListener, ListSelectionListener{
 	
 	public TelaMenu(){
 		
+	
 		listaF = new ControleFilial(dados).getNomesFiliais();
-		list = new JList<String>(listaF);
-		System.out.println(listaF[0]);		
-		
+		list = new JList<String>(listaF);	
+	
+	System.out.println(dados.getD().getEmpresa().getFiliais().get(0).getCosmetico());
+
 		jlab.setFont(new Font("Arial", Font.BOLD, 20));
 		jlab.setBounds(140, 10, 150, 30);
 		
-		
-		jfrm.setSize(420, 300);
-		
-		
 		cadastro.setBounds(262,40,150,30);
 		atualizar.setBounds(262,80,150,30);
-		
-		
 		
 		list.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION); 
 	
@@ -51,14 +48,16 @@ public class TelaMenu implements ActionListener, ListSelectionListener{
 		
 		
 	
+
+
+
 		cadastro.addActionListener(this); 
 		list.addListSelectionListener(this); 
 		atualizar.addActionListener(this);
 
+		jfrm.setSize(420, 300);
 		jfrm.setLayout(null);
 		jfrm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
-		
-		
 		
 		jfrm.add(jlab);  
 		jfrm.add(atualizar);
