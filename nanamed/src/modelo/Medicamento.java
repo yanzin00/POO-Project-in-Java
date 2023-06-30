@@ -18,8 +18,8 @@ public class Medicamento extends Produto {
 		this.tipo = tipo;
 	}
 	public String toString() {
-		return "nome d0 medicament0: " +nome+ ", quantidade: " +quantidade+ ", preco: R$" +preco+ ", validade: " +validade+ ", codigo de barra: " +codigoDeBarra+
-				", dosagem: " +dosagem+ ", tipo de medicamento:" +tipo;
+		return "Medicamento: " +nome+ "| Qtd.: " +quantidade+ "| " +preco+ "$ | Validade:" +validade+ "| Codigo de barras: " +codigoDeBarra+
+				"| Dosagem: " +dosagem+ "| Tipo:" +tipo;
 				
 	}
 	
