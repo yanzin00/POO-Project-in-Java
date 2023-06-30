@@ -1,18 +1,14 @@
 package controle;
 
-
 import java.util.ArrayList;
-
 import modelo.*;
 
-
 public class ControleFilial  {
-	
+
 	Empresa empresa = new Empresa();
 	public ArrayList<Filial> filiais = new ArrayList<Filial>();
 	
-	
-	
+
 	public ControleFilial(ControleDados cd) {
 		filiais = cd.getD().getEmpresa().getFiliais();
 		
@@ -21,7 +17,6 @@ public class ControleFilial  {
 	public ArrayList<Filial> getFiliais() {
 		return filiais;
 	}
-
 
 
 	public void setFiliais(ArrayList<Filial> filiais) {
