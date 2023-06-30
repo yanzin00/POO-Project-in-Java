@@ -14,7 +14,7 @@ public class Empresa {
 		}
 
 	public Empresa( String nomeEmpresa, ArrayList<Filial> filiais) {
-		super();
+		
 		this.nomeEmpresa = nomeEmpresa;
 		this.filiais = filiais;
 		}
@@ -22,10 +22,12 @@ public class Empresa {
 	public void editarCadastrarFilial(int pos, Filial filial) {
 		filiais.add(pos, filial);
 	}
-	
+
+	// achamos que nao ta sendo utilizado
+
 	public String[] listarFiliais() {
 		String[] filiaisListadas = new String[filiais.size()];
-		for(int i = 0; i < filiais.size(); i++) {
+		for(int i = 0; i < filiais.size() - 1; i++) {
 			filiaisListadas[i] = filiais.get(i).getNome();
 		}
 		return filiaisListadas;
@@ -39,10 +41,12 @@ public class Empresa {
 	public void removerFilial(Filial filial) {
 		filiais.remove(filial);
 	}
+
 	public String toString() {
 		return nomeEmpresa + filiais;
 	}
 	
+	// gets e sets
 	
 	public void setFiliais(ArrayList<Filial> filiais) {
 		this.filiais = filiais;
