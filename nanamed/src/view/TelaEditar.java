@@ -1,7 +1,6 @@
 package view;
 
 import javax.swing.*;
-import  java.awt.*;
 import java.awt.event.*;
 import controle.*;
 
@@ -34,11 +33,13 @@ public class TelaEditar implements ActionListener {
 
     private JButton salvarMed = new JButton("salvar");
     private JButton salvarCos = new JButton("salvar");
-   
+    private int pos;
+    
     private ControleDados dados;
 
-    public TelaEditar(ControleDados dados, int op){
+    public TelaEditar(ControleDados dados, int op, int pos){
         this.dados = dados;
+        this.pos = pos;
 
         switch(op){
             case 1:
@@ -157,7 +158,7 @@ public class TelaEditar implements ActionListener {
 				String dosagem = jtfDose.getText();
 			
 
-				dados.cadastrarEditarMedicamento(nome, quantidade, preco, validade,codigo,dosagem,tipo, dados.getD().getEmpresa().getFiliais().size());
+				dados.cadastrarEditarMedicamento(nome, quantidade, preco, validade,codigo,dosagem,tipo, dados.getD().getEmpresa().getFiliais().size(),pos);
 			
 			
 				JOptionPane.showMessageDialog(salvarMed, "Dados cadastrados com sucesso!");
