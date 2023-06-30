@@ -10,8 +10,7 @@ public class Cosmetico extends Produto {
 		super();
 	}
 	
-	public Cosmetico(String nome, int quantidade, double preco,
-	String validade, String codigoDeBarra, String volume, String marca) {
+	public Cosmetico(String nome, int quantidade, double preco, String validade, String codigoDeBarra, String volume, String marca) {
 		this.nome = nome;
 		this.quantidade = quantidade;
 		this.preco = preco;
@@ -21,10 +20,13 @@ public class Cosmetico extends Produto {
 		this.marca = marca;
 	}
 	public String toString() {
-		return "nome d0 cosmetic0: " +nome+ ", quantidade: " +quantidade+ ", preco: R$" +preco+ ", validade: " +validade+ ", codigo de barra: " +codigoDeBarra+
-				", volume: " +volume+ ", Marca:" +marca;
+		return "Cosmetico: " +nome+ "| Qtd.: " +quantidade+ "| " +preco+ "$ | Validade:" +validade+ "| Codigo de barras: " +codigoDeBarra+
+				"| Volume: " +volume+ "| Marca:" +marca;
 				
 	}
+
+	//gets e sets
+
 	public String getVolume() {
 		return volume;
 	}
