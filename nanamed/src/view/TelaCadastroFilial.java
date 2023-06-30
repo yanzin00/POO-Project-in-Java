@@ -19,7 +19,7 @@ public class TelaCadastroFilial implements ActionListener {
 	private JLabel jlabPrompt1= new JLabel("Digite o endereco: ");
 	private JLabel jlabPrompt2 = new JLabel("Digite o telefone: "); 
 
-	private static ControleDados dados;
+	private ControleDados dados;
 	int pos;
 
 	public TelaCadastroFilial(ControleDados dados) { 
