@@ -12,6 +12,8 @@ public abstract class Produto {
 		super();
 	}
 	
+	// gets e sets
+
 	public String getNome() {
 		return nome;
 	}
