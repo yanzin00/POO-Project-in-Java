@@ -17,7 +17,15 @@ public class Filial {
 	}
 
 	public Filial() {
+
 	}
+
+	public String toString() {
+		return nome + " " + cidade +" "+ telefone;
+	}
+
+	// gets e sets
+
 	public String getNome() {
 		return nome;
 	}	
@@ -51,8 +59,12 @@ public class Filial {
 	public void setCosmetico(ArrayList<Cosmetico> cosmetico) {
 		this.cosmetico = cosmetico;
 	}
-	public String toString() {
-		return nome + " " + cidade +" "+ telefone;
-	}
-	
+
+    public void setMedicamento(Medicamento medicamentoTemp) {
+		medicamento.add(medicamentoTemp);
+    }
+
+    public void setCosmetico(Cosmetico cosmeticoTemp) {
+		cosmetico.add(cosmeticoTemp);
+    }
 }
