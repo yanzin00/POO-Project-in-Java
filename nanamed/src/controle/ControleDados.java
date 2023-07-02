@@ -66,16 +66,16 @@ public class ControleDados {
 				d.getEmpresa().getFiliais().get(pos).getMedicamento().get(index).setTipo(tipo);
 				d.getEmpresa().getFiliais().get(pos).getMedicamento().get(index).setValidade(validade);	
 				d.getEmpresa().getFiliais().get(pos).getMedicamento().get(index).setDosagem(dosagem);
+				System.out.println(index);
 	    	}
 	}	
 	
-	public void cadastrarEditarCosmetico(String nome, int quantidade, double preco, String validade, String codigoDeBarra, String volume, String marca, int index) {
+	public void cadastrarEditarCosmetico(String nome, int quantidade, double preco, String validade, String codigoDeBarra, String volume, String marca, int pos,int index) {
 		Cosmetico cosmeticoTemp = new Cosmetico(nome,quantidade,preco,validade,codigoDeBarra,volume,marca);
 		
 		
-			if(index == cosmeticos.size()) { 
+			if(index == d.getEmpresa().getFiliais().get(pos).getCosmetico().size()){  
 				d.getEmpresa().getFiliais().get(pos).setCosmetico(cosmeticoTemp);
-				cosmeticos = d.getEmpresa().getFiliais().get(pos).getCosmetico();
 			
 			} 
 			else {
@@ -87,18 +87,16 @@ public class ControleDados {
 				d.getEmpresa().getFiliais().get(pos).getCosmetico().get(index).setVolume(volume);
 				d.getEmpresa().getFiliais().get(pos).getCosmetico().get(index).setMarca(marca);
 
-				System.out.println("--------------------get pos vvvv--");
-				System.out.println(cosmeticos.get(pos));
-				System.out.println(cosmeticos.get(index)+" get index");
 	    	}
 		}	
-	
-	public void excluirFilial(int pos) {
-		filiais = d.getEmpresa().getFiliais();
 
+	public boolean removerFilial(int pos) {
+		filiais = d.getEmpresa().getFiliais();
 			if (pos >= 0 && pos < filiais.size()) {
-				filiais.remove(pos);
-				d.getEmpresa().setFiliais(filiais);
+				d.getEmpresa().removerFilial(getFiliais().get(pos));
+				return true;
+			}else{
+				return false;
 			}
 	}
 
