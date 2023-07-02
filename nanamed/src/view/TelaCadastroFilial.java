@@ -19,12 +19,12 @@ public class TelaCadastroFilial implements ActionListener {
 	private JLabel jlabPrompt1= new JLabel("Digite o endereco: ");
 	private JLabel jlabPrompt2 = new JLabel("Digite o telefone: "); 
 
-	private ControleDados dados;
-	int pos;
+	private static ControleDados dados;
+	private int pos;
 
 	public TelaCadastroFilial(ControleDados dados) { 
 		this.dados = dados; 
-		
+		this.pos = pos;
 		
 		jlabPrompt.setBounds(10, 35, 208, 50);
 		jlabPrompt.setFont(new Font("Arial", Font.BOLD, 15));
@@ -69,6 +69,7 @@ public class TelaCadastroFilial implements ActionListener {
 				String nomeF = nome.getText();
 				String cidadeF = endereco.getText();
 				String telefoneF = tel.getText();
+
 				dados.cadastrarEditarFilial(nomeF, cidadeF, telefoneF, dados.getD().getEmpresa().getFiliais().size());
 			
 			
