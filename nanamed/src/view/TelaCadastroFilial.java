@@ -1,87 +1,82 @@
 package view;
-import controle.*;
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.*; 
+import java.awt.event.*; 
 import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
+import controle.*;
 
-public class TelaBusca implements ActionListener, ListSelectionListener{
+
+public class TelaCadastroFilial implements ActionListener { 
 	
-    private static JFrame jfrm = new JFrame("TelaBusca");
-	private static JLabel jlab = new JLabel("Buscar");
-	private static JTextField jtfBusca = new JTextField();
+	private JFrame jfrm = new JFrame("Cadastro");
+
+	private JTextField tel = new JTextField();
+	private JTextField endereco= new JTextField();
+	private JTextField nome = new JTextField();
+
+	private JButton salvar = new JButton("Salvar");
+
+	private JLabel jlabPrompt = new JLabel("Digite o nome da filial: "); 
+	private JLabel jlabPrompt1= new JLabel("Digite o endereco: ");
+	private JLabel jlabPrompt2 = new JLabel("Digite o telefone: "); 
+
+	private ControleDados dados;
+	private int pos;
+
+	public TelaCadastroFilial(ControleDados dados) { 
+		this.dados = dados; 
+		this.pos = pos;
+		
+		jlabPrompt.setBounds(10, 35, 208, 50);
+		jlabPrompt.setFont(new Font("Arial", Font.BOLD, 15));
+		nome.setBounds(200, 45, 280, 30);
+
+		jlabPrompt1.setBounds(10, 75, 208, 50);
+		jlabPrompt1.setFont(new Font("Arial", Font.BOLD, 15));
+		endereco.setBounds(200, 85, 280, 30);
+
+		jlabPrompt2.setBounds(10, 115, 208, 50);
+		jlabPrompt2.setFont(new Font("Arial", Font.BOLD, 15));
+		tel.setBounds(200, 125, 280, 30);
+
+		salvar.setBounds(160, 210, 150, 40);
+		jfrm.setLayout(null); 
+		jfrm.setSize(500,300);
+		
 	
-	private static JButton buscar = new JButton("Buscar");
-	
-	private JList<String> list;
-	private JScrollPane scroll;
-	private String[] listaProds;
-    private int pos;
+		jfrm.add(jlabPrompt); 
+		jfrm.add(nome);  
+		jfrm.add(jlabPrompt1);
+		jfrm.add(endereco);
+		jfrm.add(jlabPrompt2);
+		jfrm.add(tel);
+		jfrm.add(salvar);
 
-	private static ControleDados dados = new ControleDados();
-	
-	public TelaBusca(ControleDados dados) {
-		
-        for(int i =  0; i < 5; i++){
-        listaProds = new ControleEstoque(dados).getListaEstoque(dados,i);
-		list = new JList<String>(listaProds);}
-
-		jlab.setFont(new Font("Arial", Font.BOLD, 20));
-		jlab.setBounds(100, 10, 175, 30);
-		
-        buscar.setBounds(175,10,150,30);
-
-		jtfBusca.setBounds(175,50,150,30);
-		
-		
-		list.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION); 
-	
-		scroll = new JScrollPane(list); 
-		scroll.setBounds(100,100,300,300);
+		jfrm.setVisible(true);
+		salvar.addActionListener(this); 
 
 
 
-		jtfBusca.addActionListener(this); 
-		list.addListSelectionListener(this); 
-	    buscar.addActionListener(this);
-	
-
-		jfrm.setSize(500, 500);
-		jfrm.setLayout(null);
-		jfrm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
-		
-		jfrm.add(jlab);  
-		jfrm.add(jtfBusca);
-		jfrm.getContentPane().add(scroll);
-        jfrm.add(buscar);
-	
-	    jfrm.setVisible(true);
-		
-
-		
-		
-	}
-
-	public void valueChanged(ListSelectionEvent e) {  
-		
-		Object src = e.getSource();
-		if(e.getValueIsAdjusting() && src == list) {
 		}
-	}
-	public void actionPerformed(ActionEvent e) {
-		Object src = e.getSource();	
-		if(src == buscar)
-		{
-			String nomeBusca = jtfBusca.getText();
-            int b;
-            
-            b = new ControleEstoque(dados).procurarMed(nomeBusca);
-                if(b != -1)
-            {
-                    System.out.println("achou med -> print" + b);
-            }
-		}				
-	} 	
-}
 
+	@Override
+	public void actionPerformed(ActionEvent e) { 
+		if (e.getSource() == salvar) {
+			if (nome.getText().equals("") || endereco.getText().equals("")
+					|| tel.getText().equals("")) {
+				JOptionPane.showMessageDialog(salvar, "Todos os campos precisam ser preenchidos!");
+			} else {
+				
+				String nomeF = nome.getText();
+				String cidadeF = endereco.getText();
+				String telefoneF = tel.getText();
+
+				dados.cadastrarEditarFilial(nomeF, cidadeF, telefoneF, dados.getD().getEmpresa().getFiliais().size());
+			
+			
+				JOptionPane.showMessageDialog(salvar, "Dados cadastrados com sucesso!");
+				jfrm.dispose();
+			}
+
+		}	
+	}
+}
