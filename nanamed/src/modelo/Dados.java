@@ -18,6 +18,7 @@ public class Dados {
 		        }
 		}
 
+		
 		public void fillCosmeticAndMeds(Filial fil) {
 			for (int j = 0; j <= 5; j++){
 				Medicamento med = new Medicamento("med"+j,(j+1)*420,(j+2)*1.99,"10/10/202"+(j+2),"101101"+(j*2)*10,(j*50)+"mg","tipo"+j);
