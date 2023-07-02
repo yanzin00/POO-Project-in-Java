@@ -22,7 +22,6 @@ public class Medicamento extends Produto {
 				"| Dosagem: " +dosagem+ "| Tipo:" +tipo;
 				
 	}
-	
 	public String getTipo() {
 		return tipo;
 	}
