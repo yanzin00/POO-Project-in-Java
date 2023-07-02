@@ -39,6 +39,4 @@ public class Cosmetico extends Produto {
 	public void setMarca(String marca) {
 		this.marca = marca;
 	}
-	
-
 }
