@@ -34,12 +34,14 @@ public class TelaEditar implements ActionListener {
     private JButton salvarMed = new JButton("salvar");
     private JButton salvarCos = new JButton("salvar");
     private int pos;
-    
+    private int index;
+
     private ControleDados dados;
 
     public TelaEditar(ControleDados dados, int op, int pos){
         this.dados = dados;
         this.pos = pos;
+        this.index = index;
 
         switch(op){
             case 1:
@@ -158,7 +160,7 @@ public class TelaEditar implements ActionListener {
 				String dosagem = jtfDose.getText();
 			
 
-				dados.cadastrarEditarMedicamento(nome, quantidade, preco, validade,codigo,dosagem,tipo, dados.getD().getEmpresa().getFiliais().size(),pos);
+				dados.cadastrarEditarMedicamento(nome, quantidade, preco, validade,codigo,dosagem,tipo, pos,index);
 			
 			
 				JOptionPane.showMessageDialog(salvarMed, "Dados cadastrados com sucesso!");
