@@ -29,7 +29,7 @@ public class ControleEstoque {
 	public void setMedicamento(ArrayList<Medicamento> medicamentos) {
 		this.medicamentos = medicamentos;
 	}
-	
+
 	public String[] getListaEstoque(ControleDados d, int pos) {
 
 		ArrayList<Medicamento> medicamentos = d.getD().getEmpresa().getFiliais().get(pos).getMedicamento();
@@ -43,17 +43,17 @@ public class ControleEstoque {
 		System.out.println("****************************");
 		System.out.println(sizeMedCos);
 
-		String[] meds = new String[medicamentos.size()];
-		String[] cosm = new String[cosmeticos.size()];
+		String[] meds = new String[20];
+		String[] cosm = new String[20];
 		String[] estoque = new String[50];
 
-		for (int i = 0; i < medicamentos.size() -1; i++) {
+		for (int i = 0; i < medicamentos.size() ; i++) {
 			meds[i] = medicamentos.get(i).toString();
 			estoque[i] = medicamentos.get(i).toString();
 		}
-		for (int i = 0; i < cosmeticos.size() - 1; i++) {
+		for (int i = 0; i < cosmeticos.size(); i++) {
 			cosm[i] = cosmeticos.get(i).toString();
-			estoque[i+5] = cosmeticos.get(i).toString();
+			estoque[i+medicamentos.size()] = cosmeticos.get(i).toString();
 		}
 
 		
@@ -79,6 +79,19 @@ public class ControleEstoque {
 	public ArrayList<Medicamento> getMedicamento() {
 		return medicamentos;
 	}
+
+	public int procurarMed(String busca){
+
+		int i = 0;
+		for(Medicamento med : medicamentos){
+			if(med.getNome().equals(busca)){
+				return i;
+			}
+			i++;
+		}
+		return -1;
+	}	
+
 
 	public int getQtdMedicamento() {
 		return medicamentos.size();
