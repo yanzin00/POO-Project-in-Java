@@ -1,82 +1,98 @@
 package view;
-import java.awt.*; 
-import java.awt.event.*; 
-import javax.swing.*;
+
 import controle.*;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+/**
+ * tela em que se cadastra uma filial nova
+ * @author Yan Lucas, Felipe Matheus
+ * @since 2023
+ * @version 1.0
+ */
 
 
-public class TelaCadastroFilial implements ActionListener { 
-	
-	private JFrame jfrm = new JFrame("Cadastro");
+public class TelaCadastroFilial implements ActionListener {
 
-	private JTextField tel = new JTextField();
-	private JTextField endereco= new JTextField();
-	private JTextField nome = new JTextField();
+  private JFrame jfrm = new JFrame("Cadastro");
 
-	private JButton salvar = new JButton("Salvar");
+  private JTextField tel = new JTextField();
+  private JTextField endereco = new JTextField();
+  private JTextField nome = new JTextField();
 
-	private JLabel jlabPrompt = new JLabel("Digite o nome da filial: "); 
-	private JLabel jlabPrompt1= new JLabel("Digite o endereco: ");
-	private JLabel jlabPrompt2 = new JLabel("Digite o telefone: "); 
+  private JButton salvar = new JButton("Salvar");
 
-	private ControleDados dados;
-	private int pos;
+  private JLabel jlabPrompt = new JLabel("Digite o nome da filial: ");
+  private JLabel jlabPrompt1 = new JLabel("Digite o endereco: ");
+  private JLabel jlabPrompt2 = new JLabel("Digite o telefone: ");
 
-	public TelaCadastroFilial(ControleDados dados) { 
-		this.dados = dados; 
-		this.pos = pos;
-		
-		jlabPrompt.setBounds(10, 35, 208, 50);
-		jlabPrompt.setFont(new Font("Arial", Font.BOLD, 15));
-		nome.setBounds(200, 45, 280, 30);
+  private ControleDados dados;
+  private int pos;
 
-		jlabPrompt1.setBounds(10, 75, 208, 50);
-		jlabPrompt1.setFont(new Font("Arial", Font.BOLD, 15));
-		endereco.setBounds(200, 85, 280, 30);
+  // tela de cadastro recebendo dados como parametro
+  public TelaCadastroFilial(ControleDados dados) {
+    this.dados = dados;
+    this.pos = pos;
 
-		jlabPrompt2.setBounds(10, 115, 208, 50);
-		jlabPrompt2.setFont(new Font("Arial", Font.BOLD, 15));
-		tel.setBounds(200, 125, 280, 30);
+    jlabPrompt.setBounds(10, 35, 208, 50);
+    jlabPrompt.setFont(new Font("Arial", Font.BOLD, 15));
+    nome.setBounds(200, 45, 280, 30);
 
-		salvar.setBounds(160, 210, 150, 40);
-		jfrm.setLayout(null); 
-		jfrm.setSize(500,300);
-		
-	
-		jfrm.add(jlabPrompt); 
-		jfrm.add(nome);  
-		jfrm.add(jlabPrompt1);
-		jfrm.add(endereco);
-		jfrm.add(jlabPrompt2);
-		jfrm.add(tel);
-		jfrm.add(salvar);
+    jlabPrompt1.setBounds(10, 75, 208, 50);
+    jlabPrompt1.setFont(new Font("Arial", Font.BOLD, 15));
+    endereco.setBounds(200, 85, 280, 30);
 
-		jfrm.setVisible(true);
-		salvar.addActionListener(this); 
+    jlabPrompt2.setBounds(10, 115, 208, 50);
+    jlabPrompt2.setFont(new Font("Arial", Font.BOLD, 15));
+    tel.setBounds(200, 125, 280, 30);
 
+    salvar.setBounds(160, 210, 150, 40);
+    jfrm.setLayout(null);
+    jfrm.setSize(500, 300);
 
+    jfrm.add(jlabPrompt);
+    jfrm.add(nome);
+    jfrm.add(jlabPrompt1);
+    jfrm.add(endereco);
+    jfrm.add(jlabPrompt2);
+    jfrm.add(tel);
+    jfrm.add(salvar);
 
-		}
+    jfrm.setVisible(true);
+    salvar.addActionListener(this);
+  }
 
-	@Override
-	public void actionPerformed(ActionEvent e) { 
-		if (e.getSource() == salvar) {
-			if (nome.getText().equals("") || endereco.getText().equals("")
-					|| tel.getText().equals("")) {
-				JOptionPane.showMessageDialog(salvar, "Todos os campos precisam ser preenchidos!");
-			} else {
-				
-				String nomeF = nome.getText();
-				String cidadeF = endereco.getText();
-				String telefoneF = tel.getText();
+  @Override
+  // Método que faz a função de salvar a nova filial
+  public void actionPerformed(ActionEvent e) {
+    if (e.getSource() == salvar) {
+      if (
+        nome.getText().equals("") ||
+        endereco.getText().equals("") ||
+        tel.getText().equals("")
+      ) {
+        JOptionPane.showMessageDialog(
+          salvar,
+          "Todos os campos precisam ser preenchidos!"
+        );
+      } else  if(!tel.getText().matches("[0-9]+")){
+				JOptionPane.showMessageDialog(salvar, "Preencha o telefone corretamente!");
+      }
+       else {
+        String nomeF = nome.getText();
+        String cidadeF = endereco.getText();
+        String telefoneF = tel.getText();
 
-				dados.cadastrarEditarFilial(nomeF, cidadeF, telefoneF, dados.getD().getEmpresa().getFiliais().size());
-			
-			
-				JOptionPane.showMessageDialog(salvar, "Dados cadastrados com sucesso!");
-				jfrm.dispose();
-			}
+        dados.cadastrarEditarFilial(
+          nomeF,
+          cidadeF,
+          telefoneF,
+          dados.getD().getEmpresa().getFiliais().size()
+        );
 
-		}	
-	}
+        JOptionPane.showMessageDialog(salvar, "Dados cadastrados com sucesso!");
+        jfrm.dispose();
+      }
+    }
+  }
 }
