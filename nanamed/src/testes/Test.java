@@ -3,8 +3,14 @@ package nanamed.testes;
 import controle.*;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.Test;
-
+/**
+	 * Realiza os testes para verificar se os campos do cadastro de filial e produtos foram
+	 * respeitados.
+	 */
 class Testes {
+  /**
+	 * Verifica se os campos esão corretos. Verifica também e no campo de telefone não há letras.
+	 */
   @Test  
   void testCadastrarEditarFilial() {
 		ControleDados d = new ControleDados();
@@ -18,6 +24,7 @@ class Testes {
 		assertFalse(d.cadastrarEditarFilial(nomeFilial, enderecoFilial, telefoneErrado , index));
 
 	}
+	//Verifica se não há letras em preço.
     @Test
     void testCadastrarEditarMedicamento() {
 		ControleDados d = new ControleDados();
@@ -36,6 +43,7 @@ class Testes {
 		assertFalse(d.editarCadastrarMedicamento(nome,quantidade,preco,validade,codigoDeBarra,dosagemErrada,tipo));
 
 	}
+	// Verifica se não há letras em volume.
     @Test
     void testCadastrarEditarCosmetico() {
 		ControleDados d = new ControleDados();
