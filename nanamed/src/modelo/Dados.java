@@ -1,15 +1,25 @@
 package modelo;
 
 import java.util.*;
+/**
+     * Classe Dados simula o pré cadastro das filiais e produtos
+     * @author Yan Lucas, Felipe Matheus
+     * @since 2023
+     * @version 1.0
+     * 
+     */
 
 public class Dados {
-		private Empresa empresa = new Empresa();
+		
+	private Empresa empresa = new Empresa();
 		private Filial filial = new Filial();
 		private ArrayList<Filial> filiais = new ArrayList<Filial>();
 		private ArrayList<Medicamento> medicamento = new ArrayList<Medicamento>();
 		private ArrayList<Cosmetico> cosmetico = new ArrayList<Cosmetico>();
-		int qtdFiliais = 0;
-		
+	
+    /**
+     * Método que gera filiais aleatórias 
+     */
 		public void fillWithSomeData() {
 		        for (int i = 0; i <= 5; i++) {
 		        	Filial fil = new Filial("Filial"+i,"cidade"+i,""+(i+1)*1000000);
@@ -17,7 +27,9 @@ public class Dados {
 		        	empresa.setFiliais(fil);
 		        }
 		}
-
+    /**
+     * Método que gera Medicamentos e Cosmeticos aleatórios
+     */
 		
 		public void fillCosmeticAndMeds(Filial fil) {
 			for (int j = 0; j <= 5; j++){
