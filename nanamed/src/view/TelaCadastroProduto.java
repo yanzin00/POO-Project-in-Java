@@ -4,6 +4,16 @@ import javax.swing.*;
 import java.awt.event.*;
 import controle.*;
 
+/**
+ * Implementa a interface de cadastro dos produtos.
+ * 
+ * @author Yan Lucas Souza Guimarães
+ * @author Felipe Matheus Ribeiro Lopes
+ * @since 2023
+ * @version 1.0
+ *
+ */
+
 public class TelaCadastroProduto implements ActionListener {
     private JFrame jfrm = new JFrame("add");
 
@@ -33,7 +43,7 @@ public class TelaCadastroProduto implements ActionListener {
 
     private JButton salvarMed = new JButton("salvar");
     private JButton salvarCos = new JButton("salvar");
-    private JButton salvarEdit = new JButton("salvar");
+ 
     private int pos;
     private int index;
 
@@ -43,6 +53,8 @@ public class TelaCadastroProduto implements ActionListener {
         this.dados = dados;
         this.pos = pos;
         this.index = index;
+
+        // Determina o tipo de produto a ser registrado.
 
         switch(op){
             case 1:
@@ -68,11 +80,6 @@ public class TelaCadastroProduto implements ActionListener {
         jtfTipo.setBounds(120, 180, 200, 30);
 
         salvarMed.addActionListener(this);
-
-
-
-
-
 
         jfrm.add(jlNome);
         jfrm.add(jlqtd);
@@ -138,10 +145,12 @@ public class TelaCadastroProduto implements ActionListener {
 
         jfrm.add(salvarCos);
         jfrm.setVisible(true);
-    }
+        break;
+        }
     
   }
   @Override
+    // Utilização dos botôes dos métodos salvarMed e salvarCos. 
     public void actionPerformed(ActionEvent e) {
         
 		Object src = e.getSource();	
@@ -153,7 +162,10 @@ public class TelaCadastroProduto implements ActionListener {
                     || jtfTipo.getText().equals("")) {
 				JOptionPane.showMessageDialog(salvarMed, "Todos os campos precisam ser preenchidos!");
 			} 
-			else{	
+            } else  if(!jtfDose.getText().matches("[0-9]+")){
+				JOptionPane.showMessageDialog(salvarMed, "Preencha a dosagem com o número de mg. corretamente!");
+      }
+            else{	
 				
                 String nome = jtfNome.getText();
                 int quantidade = Integer.parseInt(jtfQtd.getText());
@@ -169,17 +181,17 @@ public class TelaCadastroProduto implements ActionListener {
 			
 				JOptionPane.showMessageDialog(salvarMed, "Dados cadastrados com sucesso!");
 				jfrm.dispose();
-            }
-			}
-            
-        else if(src == salvarCos) {
+            }  
+        if(src == salvarCos) {
             
 			if (jtfNome.getText().equals("") || jtfQtd.getText().equals("")
 					|| jtfPreco.getText().equals("")|| jtfVal.getText().equals("")
                     || jtfCdb.getText().equals("")|| jtfVol.getText().equals("")
                     || jtfMarca.getText().equals("")) {
-				JOptionPane.showMessageDialog(salvarMed, "Todos os campos precisam ser preenchidos!");
-			} 
+				JOptionPane.showMessageDialog(salvarMed, "Todos os campos precisam ser preenchidos!"); 
+              } else  if(!jtfDose.getText().matches("[0-9]+")){
+				JOptionPane.showMessageDialog(salvarMed, "Preencha volume apenas com números.");
+      }
             else {
 				
 				
