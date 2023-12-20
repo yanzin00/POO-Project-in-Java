@@ -6,7 +6,7 @@ Este projeto foi desenvolvido como parte do curso de Orientação a Objetos para
 
 A aplicação visa facilitar o gerenciamento de estoques em diferentes filiais da Nanamed. 
 Permite o acompanhamento de quais itens estão disponíveis em cada filial, além de fornecer funcionalidades para adicionar e remover novos produtos, 
-atualizar estoques e obter relatórios sobre as vendas e o status do estoque.
+atualizar os estoques.
 
 ## Funcionalidades
 
